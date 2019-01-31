@@ -25,6 +25,9 @@
     },
     "admin-portal-e2e": {
       "tags": []
+    },
+    "auth": {
+      "tags": ["customer-auth"]
     }
   }
 }
