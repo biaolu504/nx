@@ -2,7 +2,379 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "apps-customer-portal": {
+      "root": "apps/apps/customer-portal/",
+      "sourceRoot": "apps/apps/customer-portal/src",
+      "projectType": "application",
+      "prefix": "nx-learning",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/apps/customer-portal",
+            "index": "apps/apps/customer-portal/src/index.html",
+            "main": "apps/apps/customer-portal/src/main.ts",
+            "polyfills": "apps/apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/apps/customer-portal/tsconfig.app.json",
+            "assets": [
+              "apps/apps/customer-portal/src/favicon.ico",
+              "apps/apps/customer-portal/src/assets"
+            ],
+            "styles": ["apps/apps/customer-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/apps/customer-portal/src/environments/environment.ts",
+                  "with": "apps/apps/customer-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "apps-customer-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "apps-customer-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "apps-customer-portal:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/apps/customer-portal/src/test.ts",
+            "polyfills": "apps/apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/apps/customer-portal/tsconfig.spec.json",
+            "karmaConfig": "apps/apps/customer-portal/karma.conf.js",
+            "styles": ["apps/apps/customer-portal/src/styles.scss"],
+            "scripts": [],
+            "assets": [
+              "apps/apps/customer-portal/src/favicon.ico",
+              "apps/apps/customer-portal/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/apps/customer-portal/tsconfig.app.json",
+              "apps/apps/customer-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "apps-customer-portal-e2e": {
+      "root": "apps/apps/customer-portal-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/apps/customer-portal-e2e/cypress.json",
+            "tsConfig": "apps/apps/customer-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "apps-customer-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "apps-customer-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/apps/customer-portal-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "customer-portal": {
+      "root": "apps/customer-portal/",
+      "sourceRoot": "apps/customer-portal/src",
+      "projectType": "application",
+      "prefix": "nx-learning",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/customer-portal",
+            "index": "apps/customer-portal/src/index.html",
+            "main": "apps/customer-portal/src/main.ts",
+            "polyfills": "apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/customer-portal/tsconfig.app.json",
+            "assets": [
+              "apps/customer-portal/src/favicon.ico",
+              "apps/customer-portal/src/assets"
+            ],
+            "styles": ["apps/customer-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/customer-portal/src/environments/environment.ts",
+                  "with": "apps/customer-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "customer-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "customer-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "customer-portal:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/customer-portal/src/test.ts",
+            "polyfills": "apps/customer-portal/src/polyfills.ts",
+            "tsConfig": "apps/customer-portal/tsconfig.spec.json",
+            "karmaConfig": "apps/customer-portal/karma.conf.js",
+            "styles": ["apps/customer-portal/src/styles.scss"],
+            "scripts": [],
+            "assets": [
+              "apps/customer-portal/src/favicon.ico",
+              "apps/customer-portal/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/customer-portal/tsconfig.app.json",
+              "apps/customer-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "customer-portal-e2e": {
+      "root": "apps/customer-portal-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/customer-portal-e2e/cypress.json",
+            "tsConfig": "apps/customer-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "customer-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "customer-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/customer-portal-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "admin-portal": {
+      "root": "apps/admin-portal/",
+      "sourceRoot": "apps/admin-portal/src",
+      "projectType": "application",
+      "prefix": "nx-learning",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/admin-portal",
+            "index": "apps/admin-portal/src/index.html",
+            "main": "apps/admin-portal/src/main.ts",
+            "polyfills": "apps/admin-portal/src/polyfills.ts",
+            "tsConfig": "apps/admin-portal/tsconfig.app.json",
+            "assets": [
+              "apps/admin-portal/src/favicon.ico",
+              "apps/admin-portal/src/assets"
+            ],
+            "styles": ["apps/admin-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/admin-portal/src/environments/environment.ts",
+                  "with": "apps/admin-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "admin-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "admin-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "admin-portal:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/admin-portal/src/test.ts",
+            "polyfills": "apps/admin-portal/src/polyfills.ts",
+            "tsConfig": "apps/admin-portal/tsconfig.spec.json",
+            "karmaConfig": "apps/admin-portal/karma.conf.js",
+            "styles": ["apps/admin-portal/src/styles.scss"],
+            "scripts": [],
+            "assets": [
+              "apps/admin-portal/src/favicon.ico",
+              "apps/admin-portal/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/admin-portal/tsconfig.app.json",
+              "apps/admin-portal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "admin-portal-e2e": {
+      "root": "apps/admin-portal-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/admin-portal-e2e/protractor.conf.js",
+            "devServerTarget": "admin-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "admin-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/admin-portal-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
@@ -18,5 +390,6 @@
     "@nrwl/schematics:library": {
       "style": "scss"
     }
-  }
+  },
+  "defaultProject": "apps-customer-portal"
 }
