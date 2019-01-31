@@ -17,10 +17,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
     BrowserModule,
     NxModule.forRoot(),
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
-    StoreModule.forRoot(
-      {},
-      { metaReducers: !environment.production ? [storeFreeze] : [] }
-    ),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule
