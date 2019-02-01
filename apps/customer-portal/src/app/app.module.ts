@@ -17,7 +17,13 @@ import { storeFreeze } from 'ngrx-store-freeze';
     BrowserModule,
     NxModule.forRoot(),
     RouterModule.forRoot(
-      [{ path: 'auth', loadChildren: '@nx-learning/auth#AuthModule' }],
+      [
+        { path: 'auth', loadChildren: '@nx-learning/auth#AuthModule' },
+        {
+          path: 'shared-auth',
+          loadChildren: '@nx-learning/shared/auth#SharedAuthModule'
+        }
+      ],
       { initialNavigation: 'enabled' }
     ),
     StoreModule.forRoot({}),

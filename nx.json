@@ -28,6 +28,9 @@
     },
     "auth": {
       "tags": ["customer-auth"]
+    },
+    "shared-auth": {
+      "tags": ["customer-portal-auth"]
     }
   }
 }
